@@ -286,15 +286,105 @@ main {
   50% { opacity: 0; }
 }
 
+/* Mobile & Tablet Responsiveness Overhaul */
 @media (max-width: 1024px) {
-  .report-frame {
-    width: 350px;
+  main {
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    width: 100% !important;
   }
-}
 
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .report-frame { display: none; }
+  .sidebar {
+    width: 100% !important;
+    height: 60px !important;
+    flex-direction: row !important;
+    padding: 0 20px !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    justify-content: space-between !important;
+  }
+
+  .logo-container {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .workspace {
+    flex: none !important;
+    height: auto !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .header {
+    display: none !important;
+  }
+
+  .content-area {
+    flex-direction: column !important;
+    height: auto !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .editor-frame {
+    width: 100% !important;
+    height: 500px !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  .report-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 500px !important;
+    display: block !important;
+    overflow-x: hidden !important;
+  }
+
+  .report-header {
+    padding: 20px !important;
+    border-bottom: 1px solid var(--border) !important;
+    word-break: break-all !important; /* Force break long status text */
+  }
+
+  .health-value {
+    font-size: 32px !important; /* Scale down on mobile */
+  }
+
+  .report-content {
+    padding: 20px !important;
+    overflow-x: hidden !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    height: auto !important;
+  }
+
+  /* Force all children of report content to wrap */
+  .report-content * {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .report-content pre, .report-content code {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+
+  .status-bar {
+    display: none !important;
+  }
+
+  .scan-btn {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    z-index: 9999 !important;
+  }
 }
 
 

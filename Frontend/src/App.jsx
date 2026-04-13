@@ -90,22 +90,18 @@ function App() {
     const targetUrl = PRIMARY_BACKEND || LOCAL_BACKEND;
     
     try {
-      console.log(`[Primary] Connecting to: ${targetUrl}`);
       const result = await axios.post(`${targetUrl}/ai/get-review`, { code });
       setReview(result.data);
       setScore(calculateHealthScore(result.data));
     } catch (primaryError) {
-      console.warn("Primary backend unreachable, attempting local fallback...");
       
       try {
         if (targetUrl === LOCAL_BACKEND) throw primaryError; 
 
-        console.log(`[Fallback] Connecting to: ${LOCAL_BACKEND}`);
         const result = await axios.post(`${LOCAL_BACKEND}/ai/get-review`, { code });
         setReview(result.data);
         setScore(calculateHealthScore(result.data));
       } catch (fallbackError) {
-        console.error("System Error: All backends unreachable.");
         setReview("⚠️ Error: Backend Service Unavailable. Please check your connection.");
       }
     } finally {
